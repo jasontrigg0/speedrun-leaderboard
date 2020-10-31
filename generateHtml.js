@@ -4,7 +4,7 @@ moment = require('moment');
 fs = require('fs');
 
 function generateHtml(info) {
-  let headerHtml = '<h2 style="padding-top: 10px; text-align: center">Top speedrun records</h2><div style="text-align: center">Measured by number of runs submitted to speedrun.com in that category during that record\'s period at the top.</div>\n';
+  let headerHtml = '<h2 style="padding-top: 10px; text-align: center">Top speedrun records</h2><div style="text-align: center">Measured by number of runs submitted to speedrun.com in the category during that record\'s period at the top.</div>\n';
 
   let cardHtml = '';
   cardHtml += `<div style="margin-top: 40px; flex-direction: row; justify-content: space-around" class="tab-panel active">`;
