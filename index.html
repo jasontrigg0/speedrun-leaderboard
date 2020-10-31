@@ -1,0 +1,843 @@
+
+  <head>
+    <!-- Required styles for MDC Web -->
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="mdc-demo-card.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+     .tab-panel {
+       display: none;
+     }
+     .tab-panel.active {
+       display: flex;
+     }
+    </style>
+  </head>
+  <body>
+  <h2 style="padding-top: 10px; text-align: center">Top speedrun records</h2><div style="text-align: center">Measured by number of runs submitted to speedrun.com in that category before the record was broken.</div>
+<div style="margin-top: 40px; flex-direction: row; justify-content: space-around" class="tab-panel active">  <div style="max-width: 500px"><div style="text-align: center; padding-bottom: 10px">Current</div>
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#1 akki</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">1909 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 16 Star, N64 in 14:59.330</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">May 10, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Celeste_box_art_final.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#2 Marlin</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">1701 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Celeste: Any% in 26:57.635</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 1, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#3 Kosmic</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">706 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario Bros.: Any% in 4:55.646</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">January 17, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#4 LostC0re</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">672 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario World: 11 Exit in 9:43.750</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">September 3, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/2/21/The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#5 Lomiig</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">651 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">A Link to the Past: Major Glitches, Any% in 1:31</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">February 1, 2017</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/e/e4/Smetroidbox.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#6 zoast</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">636 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Metroid: Any% in 40:55</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 24, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/fr/9/94/Refunct_Logo.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#7 sladkesny</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">616 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Refunct: Any%, Normal in 2:42.140</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 8, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/8/8d/Super_Mario_Odyssey.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#8 Mitch</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">581 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario Odyssey: Any%, 1P in 57:54</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">July 27, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#9 Dwhatever</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">567 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 70 Star, N64 in 46:59</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">June 12, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/2/21/The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#10 RealAlphaGamer</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">460 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">A Link to the Past: No Major Glitches, Master Sword in 21:37</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">May 10, 2018</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/2/21/The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#11 RealAlphaGamer</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">453 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">A Link to the Past: No Major Glitches, Any% in 1:23:07</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">October 27, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/7/78/Super_mario_sunshine.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#12 nindiddeh</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">394 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario Sunshine: Any%, Normal in 1:13:44</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">June 28, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://en.wikipedia.org/wiki/Mario_Kart:_Double_Dash"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#13 Goomba</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">389 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Mario Kart: Double Dash: Mushroom Cup in 6:24</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">May 26, 2017</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#14 CantEven</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">344 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Portal 2: Single Player in 58:39.150</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">June 17, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/a/aa/SuperMeatBoy_cover.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#15 Matte</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">320 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Meat Boy: Any% in 17:27.267</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">March 24, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#16 Korbanoes</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">288 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Minecraft Java Edition: Any% Glitchless, Random Seed|1.16+ in 14:56.800</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">September 29, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/a/a5/Super_Mario_Bros._3_coverart.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#17 mitchflowerpower</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">286 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario Bros. 3: Any% (No Wrong Warp) in 10:44.416</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">October 22, 2018</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/1/16/Wii_Sports_Resort_boxart.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#18 Sir_Tyler</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">271 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Wii Sports Resort: Golf, 18 Holes in 10:14</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">June 24, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#19 LostC0re</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">247 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario World: 11 Exit, No Cape in 10:12.100</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">November 29, 2017</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/d/de/Crash_Bandicoot_N._Sane_Trilogy_cover_art.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#20 DepCow</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">234 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Crash Bandicoot: Crash Bandicoot, Any% in 42:10</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 16, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/c/c0/Hollow_Knight_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#21 pest</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">219 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Hollow Knight: Any%, No Major Glitches in 32:55</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">June 5, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/e/e4/Smetroidbox.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#22 zoast</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">218 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Metroid: GT Code, Classic in 32:40</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">November 10, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/c/ce/Vice-city-cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#23 Marushko</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">216 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Grand Theft Auto: Vice City: Any% (No SSU) in 49:30</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">March 30, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#24 simply</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">211 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 120 Star, N64 in 1:38:28</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">May 29, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/9/9f/Portal_standalonebox.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#25 Shizzal</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">209 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Portal: Glitchless in 15:16.740</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">August 15, 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>  <div style="max-width: 500px"><div style="text-align: center; padding-bottom: 10px">All Time</div>
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#1 Xiah</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">2192 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 16 Star, N64 in 15:24.350</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">May 7, 2016</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#2 akki</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">1909 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 16 Star, N64 in 14:59.330</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">May 10, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Celeste_box_art_final.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#3 Marlin</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">1701 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Celeste: Any% in 26:57.635</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 1, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/7/78/Super_mario_sunshine.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#4 nindiddeh</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">1263 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario Sunshine: Any%, Normal in 1:14:40</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">May 20, 2017</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/2/21/The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#5 Xelna</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">985 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">A Link to the Past: No Major Glitches, Any% in 1:23:19</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">October 12, 2016</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#6 cheese</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">911 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 70 Star, N64 in 47:34</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">January 24, 2018</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#7 cheese</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">910 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 70 Star, N64 in 47:56</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">October 10, 2016</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#8 Area51</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">909 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario World: 11 Exit in 9:45.283</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">January 16, 2018</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#9 darbian</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">903 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario Bros.: Any% in 4:56.878</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">October 5, 2016</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/c/c7/BattleForBikiniBottom.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#10 SHiFT</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">891 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Battle for Bikini Bottom: Any% in 48:58</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">February 24, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#11 Weegee</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">847 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 16 Star, N64 in 15:17.650</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 5, 2018</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/e/e4/Smetroidbox.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#12 Behemoth87</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">839 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Metroid: Any% in 40:56</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 6, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#13 akki</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">774 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 16 Star, N64 in 15:04.400</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">May 10, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/commons/8/80/Roblox_Logo_Black.svg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#14 kriptopolis</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">763 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Roblox Speed Run 4: No Skips, 5 Levels in 1:57.633</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">November 2, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#15 akki</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">728 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario 64: 16 Star, N64 in 15:08.870</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">October 21, 2018</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#16 Kosmic</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">706 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario Bros.: Any% in 4:55.646</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">January 17, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/e/e4/Smetroidbox.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#17 Behemoth87</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">693 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Metroid: 100% in 1:14:33</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">March 16, 2017</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/8/8f/NewSuperMarioBrosWiiBoxart.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#18 Auchgard</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">683 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">New Super Mario Bros. Wii: Any%, Physical in 22:45.533</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">November 23, 2016</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#19 LostC0re</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">672 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario World: 11 Exit in 9:43.750</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">September 3, 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/5/5e/Lmbox.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#20 Bluehits</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">661 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Luigi's Mansion: No OoB in 55:58</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">June 18, 2018</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/2/21/The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#21 Lomiig</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">651 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">A Link to the Past: Major Glitches, Any% in 1:31</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">February 1, 2017</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#22 Area51</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">641 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Mario World: 11 Exit in 9:45.630</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">February 2, 2017</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/en/e/e4/Smetroidbox.jpg"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#23 zoast</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">636 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Super Metroid: Any% in 40:55</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 24, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/fr/9/94/Refunct_Logo.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#24 sladkesny</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">616 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Refunct: Any%, Normal in 2:42.140</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">April 8, 2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
+          <img style="max-height: 120px" src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Celeste_box_art_final.png"></img>
+        </div>
+        <div>
+          <div class="demo-card__primary">
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">#25 TGH</h2>
+            <h2 style="text-align: right" class="demo-card__title mdc-typography mdc-typography--headline6">599 runs</h2>
+          </div>
+          <div style="text-align: right; padding-bottom: 0" class="demo-card__secondary mdc-typography mdc-typography--body2">Celeste: Any% in 27:31.482</div>
+          <div style="text-align: right" class="demo-card__secondary mdc-typography mdc-typography--body2">August 20, 2019</div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+    <!-- Required MDC Web JavaScript library -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script>
+     //setup tabs
+     window.onload = function() {
+       for (const e of document.querySelectorAll(".mdc-tab-bar")) {
+         let tab = new mdc.tabBar.MDCTabBar(e)
+         tab.preventDefaultOnClick = true
+
+         tab.listen("MDCTabBar:activated", function({detail: {index: index}}) {
+           // Hide all panels.
+           for (const t of document.querySelectorAll(".tab-panel")) {
+             t.classList.remove("active")
+           }
+
+           // Show the current one.
+           let tab = document.querySelector(".tab-panel:nth-child(" + (index + 2) + ")")
+           tab.classList.add("active")
+         })
+       }
+     };
+    </script>
+  </body>
+</html>
+  
