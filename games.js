@@ -65,7 +65,7 @@ const gameInfo = {
   },
   mkdd: {
     name: "Mario Kart: Double Dash",
-    image: "https://en.wikipedia.org/wiki/Mario_Kart:_Double_Dash"
+    image: "https://upload.wikimedia.org/wikipedia/en/7/78/Mario_Kart_Double_Dash.jpg"
   },
   smb: {
     name: "Super Meat Boy",
