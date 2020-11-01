@@ -92,7 +92,7 @@ function generateCards(title, info) {
 
     let card = generateCard(
       gameInfo[row["game"]]["image"],
-      `#${cnt} ${row["runner"]}`,
+      `#${cnt} <a href="https://speedrun.com/user/${row["runner"]}">${row["runner"]}</a>`,
       `${row["cnt"]} runs`,
       `<a href="https://speedrun.com/${row["game"]}">${gameInfo[row["game"]]["name"]}</a>: ${cat} in ${timeString}`,
       `${moment(row["date"]).format('LL')}`
