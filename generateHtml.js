@@ -94,7 +94,7 @@ function generateCards(title, info) {
       gameInfo[row["game"]]["image"],
       `#${cnt} ${row["runner"]}`,
       `${row["cnt"]} runs`,
-      `${gameInfo[row["game"]]["name"]}: ${cat} in ${timeString}`,
+      `<a href="https://speedrun.com/${row["game"]}">${gameInfo[row["game"]]["name"]}</a>: ${cat} in ${timeString}`,
       `${moment(row["date"]).format('LL')}`
     );
     allCards.push(card);
