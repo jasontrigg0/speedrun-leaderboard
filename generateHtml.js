@@ -65,7 +65,7 @@ function generateCard(image, header1, header2, header3, header4) {
     <div class="mdc-card" style="margin-bottom: 20px; max-width: 500px;">
       <div style="display: flex; justify-content: space-between; align-items: center">
         <div style="display: flex; margin-left: 25px; height: 120px; width: 120px; justify-content: center; align-items: center">
-          <img style="max-height: 120px" src="${image}"></img>
+          <img style="max-height: 120px; max-width: 120px" src="${image}"></img>
         </div>
         <div>
           <div class="demo-card__primary">

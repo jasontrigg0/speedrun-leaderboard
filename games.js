@@ -194,6 +194,10 @@ const gameInfo = {
   r6_siege: {
     name: "Rainbow Six Siege",
     image: "https://upload.wikimedia.org/wikipedia/en/4/47/Tom_Clancy%27s_Rainbow_Six_Siege_cover_art.jpg"
+  },
+  hades: {
+    name: "Hades",
+    image: "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg"
   }
 }
 
