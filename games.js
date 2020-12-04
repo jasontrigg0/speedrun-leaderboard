@@ -198,6 +198,10 @@ const gameInfo = {
   hades: {
     name: "Hades",
     image: "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg"
+  },
+  "karlson_itch.io": {
+    name: "Karlson",
+    image: "https://images.pcgamingwiki.com/f/ff/Karlson_cover.jpg"
   }
 }
 
