@@ -109,8 +109,6 @@ function generateCards(title, info) {
 
 
 async function main() {
-  //let info = await generateInfo(fs.readdirSync('game_data/nfl/').map(x => 'game_data/nfl/' + x), "0601");
-
   let info = [];
   for await (let row of readCsvFiles(['/tmp/records.csv'])) {
     if (row["game"] === "dragster") continue;
