@@ -113,6 +113,7 @@ async function main() {
   for await (let row of readCsvFiles(['/tmp/records.csv'])) {
     if (row["game"] === "dragster") continue;
     if (row["game"] === "supermetroid" && row["category"] === "Ceres Escape") continue;
+    if (row["game"] === "mcc" && row["category"] === "Meme Categories" && row["subcategory"] === "Break Dirt") continue;
     info.push(row);
   }
 
