@@ -202,6 +202,10 @@ const gameInfo = {
   "karlson_itch.io": {
     name: "Karlson",
     image: "https://images.pcgamingwiki.com/f/ff/Karlson_cover.jpg"
+  },
+  'dl1': {
+    name: "Duck Life 1",
+    image: ""
   }
 }
 
