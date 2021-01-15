@@ -206,6 +206,10 @@ const gameInfo = {
   'dl1': {
     name: "Duck Life 1",
     image: ""
+  },
+  'ting': {
+    name: "There Is No Game",
+    image: ""
   }
 }
 
