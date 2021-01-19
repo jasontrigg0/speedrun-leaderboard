@@ -108,16 +108,53 @@ function generateCards(title, info) {
 }
 
 
+function skipRow(row) {
+  if (row["game"] === "dragster") return true;
+  if (row["game"] === "supermetroid" && row["category"] === "Ceres Escape") return true;
+  if (row["game"] === "mcc" && row["category"] === "Meme Categories" && row["subcategory"] === "Break Dirt") return true;
+  return false;
+}
+
 async function main() {
   let info = [];
   for await (let row of readCsvFiles(['/tmp/records.csv'])) {
-    if (row["game"] === "dragster") continue;
-    if (row["game"] === "supermetroid" && row["category"] === "Ceres Escape") continue;
-    if (row["game"] === "mcc" && row["category"] === "Meme Categories" && row["subcategory"] === "Break Dirt") continue;
+    if (skipRow(row)) continue;
     info.push(row);
   }
 
   sortArray(info, key= x=> -1 * x["cnt"]);
+
+  //compute biggest recent record breaks
+  let last;
+  let recentRecords = [];
+  for await (let row of readCsvFiles(['/tmp/records.csv'])) {
+    if (skipRow(row)) continue;
+    if (moment().diff(moment(row["date"]),'days') < 30) { //record in the last 30 days
+      if (!last || (last['game'] === row['game'] && last['category'] === row['category'] && last['subcategory'] === row['subcategory'])) {
+        recentRecords.push(Object.assign({}, row, {priorCnt: last && last.cnt}));
+      }
+    }
+    last = row;
+  }
+  sortArray(recentRecords, key = x => -1 * x["priorCnt"]);
+
+  //compute most dominant players overall
+  let runners = {};
+  for await (let row of readCsvFiles(['/tmp/records.csv'])) {
+    if (skipRow(row)) continue;
+    let key = [row['runner'],row['game']].join('|')
+    runners[key] = runners[key] || 0
+    runners[key] += parseInt(row['cnt'],10)
+  }
+  let totals = [];
+  for (let x in runners) {
+    totals.push({
+      runner: x.split('|')[0],
+      game: x.split('|')[1],
+      cnt: runners[x]
+    });
+  }
+  sortArray(totals, key = x => -1 * x.cnt);
 
   const html = generateHtml(info);
 
