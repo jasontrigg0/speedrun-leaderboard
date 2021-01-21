@@ -203,12 +203,16 @@ const gameInfo = {
     name: "Karlson",
     image: "https://images.pcgamingwiki.com/f/ff/Karlson_cover.jpg"
   },
-  'dl1': {
+  dl1: {
     name: "Duck Life 1",
     image: ""
   },
-  'ting': {
+  ting: {
     name: "There Is No Game",
+    image: ""
+  },
+  redball1: {
+    name: "Red Ball",
     image: ""
   }
 }
