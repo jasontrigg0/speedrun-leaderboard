@@ -214,6 +214,18 @@ const gameInfo = {
   redball1: {
     name: "Red Ball",
     image: ""
+  },
+  shar: {
+    name: "The Simpsons: Hit & Run",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/5/5f/The_Simpsons_Hit_and_Run_cover.png/220px-The_Simpsons_Hit_and_Run_cover.png"
+  },
+  celestep8: {
+    name: "Celeste Classic",
+    image: ""
+  },
+  chipndale: {
+    name: "Chip 'N Dale: Rescue Rangers",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Chip_%27n_Dale_Rescue_Rangers_NES_Cover.png/220px-Chip_%27n_Dale_Rescue_Rangers_NES_Cover.png"
   }
 }
 
