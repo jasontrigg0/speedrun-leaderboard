@@ -226,6 +226,14 @@ const gameInfo = {
   chipndale: {
     name: "Chip 'N Dale: Rescue Rangers",
     image: "https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Chip_%27n_Dale_Rescue_Rangers_NES_Cover.png/220px-Chip_%27n_Dale_Rescue_Rangers_NES_Cover.png"
+  },
+  slitherio: {
+    name: "Slither.io",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Slither.png/220px-Slither.png"
+  },
+  sm3das: {
+    name: "Super Mario 3D All-Stars",
+    image: "https://upload.wikimedia.org/wikipedia/en/0/01/Super_Mario_3D_All_Stars.jpg"
   }
 }
 
