@@ -109,17 +109,22 @@ function generateCards(title, info) {
 
 
 function skipRow(row) {
-  if (row["game"] === "dragster") return true;
   if (row["game"] === "supermetroid" && row["category"] === "Ceres Escape") return true;
-  if (row["game"] === "mcc" && row["category"] === "Meme Categories" && row["subcategory"] === "Break Dirt") return true;
   return false;
 }
 
 async function main() {
   let info = [];
+  let lastKey = "";
   for await (let row of readCsvFiles(['/tmp/records.csv'])) {
     if (skipRow(row)) continue;
-    info.push(row);
+
+    //skip tied records (eg Dragster, Minecraft break dirt category)
+    let key = [row['game'],row['category'],row['subcategory'],row['time']].join('|')
+    if (key !== lastKey) {
+      info.push(row);
+    }
+    lastKey = key;
   }
 
   sortArray(info, key= x=> -1 * x["cnt"]);

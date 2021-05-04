@@ -234,6 +234,10 @@ const gameInfo = {
   sm3das: {
     name: "Super Mario 3D All-Stars",
     image: "https://upload.wikimedia.org/wikipedia/en/0/01/Super_Mario_3D_All_Stars.jpg"
+  },
+  cuphead: {
+    name: "Cuphead",
+    image: "https://upload.wikimedia.org/wikipedia/en/b/be/Cuphead_%28artwork%29.jpg"
   }
 }
 
