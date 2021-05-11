@@ -238,6 +238,10 @@ const gameInfo = {
   cuphead: {
     name: "Cuphead",
     image: "https://upload.wikimedia.org/wikipedia/en/b/be/Cuphead_%28artwork%29.jpg"
+  },
+  titanfall_2: {
+    name: "Titanfall 2",
+    image: ""
   }
 }
 
