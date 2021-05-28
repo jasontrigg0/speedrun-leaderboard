@@ -242,6 +242,10 @@ const gameInfo = {
   titanfall_2: {
     name: "Titanfall 2",
     image: ""
+  },
+  seterra: {
+    name: "Seterra",
+    image: ""
   }
 }
 
