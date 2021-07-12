@@ -246,6 +246,10 @@ const gameInfo = {
   seterra: {
     name: "Seterra",
     image: ""
+  },
+  jb: {
+    name: "Roblox: jailbreak",
+    image: ""
   }
 }
 
