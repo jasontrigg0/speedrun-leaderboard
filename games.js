@@ -250,6 +250,10 @@ const gameInfo = {
   jb: {
     name: "Roblox: jailbreak",
     image: ""
+  },
+  outlast: {
+    name: "Outlast",
+    image: "https://upload.wikimedia.org/wikipedia/en/a/aa/Outlast_cover.jpg"
   }
 }
 
