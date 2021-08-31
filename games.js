@@ -254,6 +254,10 @@ const gameInfo = {
   outlast: {
     name: "Outlast",
     image: "https://upload.wikimedia.org/wikipedia/en/a/aa/Outlast_cover.jpg"
+  },
+  csgo: {
+    name: "Counter-Strike: Global Offensive",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/CSGOcoverMarch2020.jpg/220px-CSGOcoverMarch2020.jpg"
   }
 }
 
