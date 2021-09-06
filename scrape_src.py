@@ -1,0 +1,375 @@
+import requests
+import json
+import time
+from bs4 import BeautifulSoup
+import csv
+import sys
+import re
+import itertools
+
+#scrape speedrun.com to find the best records as measured by
+#most runs submitted in that category before the record was broken
+
+#NOTE: speedrun.com has an api but the api lumps together many
+#leaderboards that show up separately on the speedrun.com website
+#so scraping the website directly. Different games have different
+#formats but this works on all games with 500+ runs as of 2020-10-18
+
+BASE_URL="https://speedrun.com/api/v1"
+
+def get(url, options=None):
+    delay = 1
+    while True:
+        try:
+            return requests.get(url, options)
+        except:
+            time.sleep(delay)
+            delay *= 1.25
+            if delay > 60:
+                raise
+
+def get_most_popular_games():
+    offset = 0;
+    while True:
+        r = get(f"https://www.speedrun.com/ajax_games.php?game=&platform=&unofficial=off&orderby=mostruns&title=&series=&start={offset}")
+        soup = BeautifulSoup(r.text,"lxml")
+        for game in soup.select("div.listcell > a"):
+            abbreviation = game["href"]
+            if abbreviation[0] != "/":
+                raise
+            abbreviation = abbreviation[1:]
+
+            retries = 0
+            while True:
+                r = requests.get(f"{BASE_URL}/games", {'abbreviation': abbreviation})
+                if json.loads(r.text).get("status",None) == 420:
+                    retries += 1
+                    continue
+                if retries >= 3: raise
+                data = json.loads(r.text)["data"]
+                break
+            if len(data) != 1: raise
+            game_id = data[0]["id"]
+            print({"abbreviation": abbreviation, "id": game_id})
+            yield {"abbreviation": abbreviation, "id": game_id}
+        offset += 50
+
+def get_related_leaderboard_records(subcategory_to_runs, subcategory_to_slower):
+    #function to handle the case where one platform is slower
+    #than another but often (generally?) has faster runs
+
+    #generate reverse map from subcategory to faster
+    subcategory_to_faster = {}
+    for faster in subcategory_to_slower:
+        for slower in subcategory_to_slower[faster]:
+            subcategory_to_faster[slower] = subcategory_to_faster.get(slower,[]) + [faster]
+
+    all_runs = [{**run, "subcategory":subcategory} for subcategory in subcategory_to_runs for run in subcategory_to_runs[subcategory]]
+    all_runs.sort(key = lambda x: x["date"])
+
+    #only store records that are "active" ie not superceded by slower subcategories
+    #so if the current best in the faster emulator subcategory is beaten by the slower N64
+    #subcategory then wipe the emulator record entirely
+    subcategory_records = {}
+    subcategory_cnts = {}
+
+    for run in all_runs:
+        subcategory = run["subcategory"]
+        slower_subcategories = subcategory_to_slower.get(subcategory,[])
+        faster_subcategories = subcategory_to_faster.get(subcategory,[])
+        #check if we beat a faster subcategory, if so wipe that subcategory's record entirely
+        for faster in faster_subcategories:
+            if faster in subcategory_records and run["time"] <= subcategory_records[faster]["time"]:
+                yield {
+                    "subcategory": faster,
+                    "time": subcategory_records[faster]["time"],
+                    "date": subcategory_records[faster]["date"],
+                    "runner": subcategory_records[faster]["runner"],
+                    "cnt":  subcategory_cnts[faster],
+                    "cur":  0
+                }
+                del subcategory_records[faster]
+                del subcategory_cnts[faster]
+
+        #check if record for this subcategory (must be faster than slower subcategories too)
+        same_or_slower_subcategory_records = [subcategory_records[x] for x in [subcategory] + slower_subcategories if x in subcategory_records]
+        if all(run["time"] < record["time"] for record in same_or_slower_subcategory_records):
+            if subcategory in subcategory_records:
+                yield {
+                    "subcategory": subcategory,
+                    "time": subcategory_records[subcategory]["time"],
+                    "date": subcategory_records[subcategory]["date"],
+                    "runner": subcategory_records[subcategory]["runner"],
+                    "cnt":  subcategory_cnts[subcategory],
+                    "cur":  0
+                }
+            subcategory_records[subcategory] = {
+                "time": run["time"],
+                "date": run["date"],
+                "runner": run["runner"]
+            }
+            subcategory_cnts[subcategory] = 0
+
+        if subcategory in subcategory_cnts:
+            #increment cnts for this subcategory and slower subcategories (if we didn't beat their record)
+            subcategory_cnts[subcategory] += 1
+        for slower in slower_subcategories:
+            if slower in subcategory_records and subcategory_records[slower]["time"] < run["time"]:
+                subcategory_cnts[slower] += 1
+    #current records
+    for subcategory in subcategory_records:
+        yield {
+            "runner": subcategory_records[subcategory]["runner"],
+            "subcategory": subcategory,
+            "time": subcategory_records[subcategory]["time"],
+            "date": subcategory_records[subcategory]["date"],
+            "runner": subcategory_records[subcategory]["runner"],
+            "cnt":  subcategory_cnts[subcategory],
+            "cur": 1
+        }
+
+
+def get_leaderboard_runs(url_params):
+    r = get("https://www.speedrun.com/ajax_leaderboard.php",url_params)
+    soup = BeautifulSoup(r.text,'lxml')
+
+    time_col = None
+
+    if soup.select("div.center") and soup.select("div.center")[0].text == "There are no runs.":
+        return
+
+    #find time column
+    for i,x in enumerate(soup.select("th")):
+        # print("header")
+        # print(x)
+        if x.text.lower() == "time":
+            time_col = i
+            break
+        elif "time" in x.text.lower():
+            onclick = x.select("a")[0]["onclick"]
+            #example onclick: $('#loadtimes').val(0);
+            var, val = re.findall("\$\('#(\w+)'\)\.val\((\d+)\);",onclick)[0]
+            if url_params[var] == val:
+                time_col = i
+                break
+            elif time_col is None:
+                time_col = i
+
+    if time_col is None:
+        print(url_params)
+        print(soup.select("th"))
+        raise
+
+    for i,result in enumerate(soup.select("tr.linked")):
+        run = result["data-target"]
+        cells = result.findAll("td")
+
+        runner_cells = result.select("a.link-username")
+        runner = re.sub("^/user/","",runner_cells[0]["href"]) if runner_cells else "Unknown"
+
+        #time info stored in <small> tags
+        time_cell = cells[time_col]
+        if i==0 and not time_cell.text: #must find time_cell info in the first row
+            raise
+        elif not time_cell.text:
+            continue
+        time_conversions = {"h": 3600, "m": 60, "s": 1, "ms": 0.001}
+        convert_time = lambda x: time_conversions[re.sub("\d+","",x)] * float(re.findall("\d+",x)[0])
+        time = sum([convert_time(x) for x in time_cell.text.split()])
+        try:
+            date = result.findAll("time")[0]["datetime"]
+        except:
+            continue #to time info
+
+        if time == 0:
+            print(result)
+            raise
+        yield {"time":time, "date":date, "runner": runner, "info": run}
+
+
+def get_leaderboard_records(all_runs):
+    record = None
+    cnt = 0
+
+    for run in all_runs:
+        if not record:
+            record = {"time": run["time"], "date": run["date"], "runner": run["runner"]}
+            cnt = 0
+        elif run["time"] <= record["time"]:
+            yield {"time": record["time"], "date": record["date"], "runner": record["runner"], "cnt": cnt, "cur": 0}
+            record = {"time": run["time"], "date": run["date"], "runner": run["runner"]}
+            cnt = 0
+        cnt += 1
+    if record:
+        yield {"time": record["time"], "date": record["date"], "runner": record["runner"], "cnt": cnt, "cur": 1}
+
+def get_multi_pbs(all_runs):
+    #times when one player had multiple pbs above second place
+    record_holder_runs = []
+    runner_up_run = None
+
+    for run in all_runs:
+        if not record_holder_runs or run["time"] < record_holder_runs[-1]["time"]: #note: tying the record doesn't make you a new record holder
+            #new record
+            if not record_holder_runs or run["runner"] == record_holder_runs[-1]["runner"]:
+                record_holder_runs.append({"time": run["time"], "date": run["date"], "runner": run["runner"]})
+            else:
+                record_holder_runs = [{"time": run["time"], "date": run["date"], "runner": run["runner"]}]
+                runner_up_run = record_holder_runs[-1]
+            yield {**record_holder_runs[-1], **{"is_record": 1, "record_runner": record_holder_runs[-1]["runner"], "record_runner_cnt": len(record_holder_runs)}}
+        elif not runner_up_run or run["time"] < runner_up_run["time"]:
+            if run["runner"] == record_holder_runs[-1]["runner"]:
+                #shouldn't get here -- world record holder submitted a non-pb? Not really sure what to do, maybe this is an error
+                continue
+            else:
+                #new runner up
+                record_holder_runs = [x for x in record_holder_runs if x["time"] <= run["time"]] #note: ties go to the first runner
+                runner_up_run = {"time": run["time"], "date": run["date"], "runner": run["runner"]}
+                yield {**runner_up_run, **{"is_record": 0, "record_runner": record_holder_runs[-1]["runner"], "record_runner_cnt": len(record_holder_runs)}}
+
+
+def get_leaderboards(game_abbrev, writers):
+    r = get(f"https://www.speedrun.com/{game_abbrev}")
+    soup = BeautifulSoup(r.text,'lxml')
+    categories = [{"name":x.text.strip(),"id":x["id"].replace("category","")} for x in soup.select("a.category")]
+
+    #populate all_filters
+    all_filters = []
+    for x in soup.findAll("div",id=re.compile('^varnav')):
+        options = [{"variable": input_["name"], "value": input_["value"], "name": label.text.strip()} for input_, label in zip(x.findAll("input"), x.findAll("label"))]
+        all_filters.append({"category": x["data-cat"], "options": options})
+    all_fields = soup.select('div.mb-4p5 > input')
+
+    for c in categories:
+        subcategory_to_runs = get_subcategory_to_runs(game_abbrev, c, all_filters, all_fields)
+
+        record_generator = get_sm64_records if game_abbrev == "sm64" else get_records
+        for record in record_generator(game_abbrev, c, subcategory_to_runs):
+            writers["records"].writerow(record)
+        #TODO: update the below to handle sm64
+        for subcat in subcategory_to_runs:
+            runs = subcategory_to_runs[subcat]
+            for multi_record in get_multi_pbs(runs):
+                multi_record["category"] = c["name"]
+                multi_record["subcategory"] = subcat
+                multi_record["game"] = game_abbrev
+                writers["multi_pb"].writerow(multi_record)
+
+def get_sm64_records(game_abbrev, category, subcategory_to_runs):
+    #for sm64 process the N64, VC and EMU categories at once:
+    #VC and EMU are technically faster, but serious players
+    #run N64 and those records are almost always fastest
+    #so when a new player logs a slow EMU time that should count
+    #towards the N64 record
+    #only store a separate EMU/VC record in the rare case where EMU/VC
+    #record is faster than the N64 record, and in that case new
+    #slow EMU/VC runs count towards both the EMU/VC and N64 record
+
+    subcategory_to_slower = {
+        "VC": ["N64"],
+        "EMU": ["N64"]
+    }
+    for r in get_related_leaderboard_records(subcategory_to_runs, subcategory_to_slower):
+        r["game"] = game_abbrev
+        r["category"] = category["name"]
+        yield r
+
+
+def get_records(game_abbrev, category, subcategory_to_runs):
+    for subcategory in subcategory_to_runs:
+        for r in get_leaderboard_records(subcategory_to_runs[subcategory]):
+            r["game"] = game_abbrev
+            r["category"] = category["name"]
+            r["subcategory"] = subcategory
+            yield r
+
+
+def get_subcategory_to_runs(game_abbrev, category, all_filters, all_fields):
+    relevant_filters = [f for f in all_filters if f["category"] in ["-1",category["id"]]]
+    if game_abbrev == "sm64":
+        #As of 2020-10-19 all subcategories are separated only by a single filter
+        #on N64, VC and EMU: error if this changes
+        #because the get_sm64_records() function will need to change
+        if not (len(relevant_filters) == 1 and len(relevant_filters[0]["options"]) == 3):
+            raise
+    subcategory_runs = {}
+    for filter_tuple in itertools.product(*[x["options"] for x in relevant_filters]):
+        params = {
+            "obsolete": "1",
+            "category": category["id"]
+        }
+        for f in all_fields:
+            if f.get("name","") and f.get("value",""):
+                if f["name"] == "category": continue #specifies the default category
+                params[f["name"]] = f["value"]
+        for x in filter_tuple:
+            params[x["variable"]] = x["value"]
+        runs = list(get_leaderboard_runs(params))
+        runs.sort(key = lambda x: x["date"])
+        subcategory_runs["|".join([x["name"] for x in filter_tuple])] = runs
+    return subcategory_runs
+
+#NOTE: not using the api because it lumps together different leaderboards
+def get_categories_from_api(game_id):
+    r = get(f"{BASE_URL}/games/{game_id}/categories", {'max': 50})
+    categories = {}
+    for c in json.loads(r.text)["data"]:
+        yield {"name": c["name"], "id": c["id"]}
+    if len(categories) == 50:
+        raise Exception("more than 50 categories")
+
+def get_records_from_api(category_id = None):
+    data = {}
+    if category_id:
+        data['category'] = category_id
+
+    data["orderby"] = "date" #"submitted"
+    data["offset"] = 0
+    data["max"] = 200
+
+    output = "/tmp/runs.txt"
+
+    record = None
+    cnt = 0
+
+    while True:
+        time.sleep(1) #api rate limit is 100 / minute
+        r = get(f"{BASE_URL}/runs", data)
+        if not json.loads(r.text)["data"]: break
+        for r in json.loads(r.text)["data"]:
+            #if r["submitted"] == None: continue
+            if r["status"]["status"] != "verified": continue
+            runtime = r["times"]["primary_t"]
+            if not record:
+                record = {"time": runtime, "date":r["date"]}
+                cnt = 0
+            elif runtime <= record["time"]:
+                yield {"time":record["time"], "date":record["date"], "cnt":cnt, "cur":0}
+                record = {"time":runtime, "date":r["date"]}
+                cnt = 0
+            cnt += 1
+        data["offset"] += data["max"]
+    yield {"time":record["time"], "date":record["date"], "cnt":cnt, "cur":1}
+
+if __name__ == "__main__":
+    #setup csv writers
+    record_writer = csv.DictWriter(open("/tmp/records.csv","w"), fieldnames=["game", "category", "subcategory", "cnt", "time", "date", "runner", "cur"]) #sys.stdout
+    record_writer.writeheader()
+
+    multi_pb_writer = csv.DictWriter(open("/tmp/multipb.csv","w"), fieldnames=["game", "category", "subcategory", "time", "date", "runner", "is_record", "record_runner", "record_runner_cnt"])
+    multi_pb_writer.writeheader()
+
+
+    csv_writers = {
+        "records": record_writer,
+        "multi_pb": multi_pb_writer
+    }
+
+    game = None #"cuphead" #None #"smb1" #"crossy"
+    for g in get_most_popular_games():
+        if game is not None:
+            if g["abbreviation"] == game:
+                get_leaderboards(g["abbreviation"], csv_writers)
+                raise
+        else:
+            get_leaderboards(g["abbreviation"], csv_writers)
