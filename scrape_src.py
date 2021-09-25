@@ -15,6 +15,10 @@ import itertools
 #so scraping the website directly. Different games have different
 #formats but this works on all games with 500+ runs as of 2020-10-18
 
+#2021-09-25: trying to view all runs for the most popular games takes
+#over 60 seconds -> gives a timeout. Not sure what to do, maybe check
+#back in a month or two to see if it's fixed?
+
 BASE_URL="https://speedrun.com/api/v1"
 
 def get(url, options=None):
@@ -295,6 +299,7 @@ def get_subcategory_to_runs(game_abbrev, category, all_filters, all_fields):
     subcategory_runs = {}
     for filter_tuple in itertools.product(*[x["options"] for x in relevant_filters]):
         params = {
+            "topn": "-1", #new on 2021-09-25, website uses topn=1000
             "obsolete": "1",
             "category": category["id"]
         }
