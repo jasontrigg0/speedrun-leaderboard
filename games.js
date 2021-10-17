@@ -258,6 +258,22 @@ const gameInfo = {
   csgo: {
     name: "Counter-Strike: Global Offensive",
     image: "https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/CSGOcoverMarch2020.jpg/220px-CSGOcoverMarch2020.jpg"
+  },
+  piggy: {
+    name: "ROBLOX: Piggy",
+    image: ""
+  },
+  2048: {
+    name: "2048",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/220px-2048_logo.svg.png"
+  },
+  me: {
+    name: "Mirror's Edge",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/97/Mirror%27s_Edge.jpg/220px-Mirror%27s_Edge.jpg"
+  },
+  brawl_stars: {
+    name: "Brawl Stars",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Brawl_Stars_logo.png/220px-Brawl_Stars_logo.png"
   }
 }
 

@@ -19,6 +19,8 @@ import itertools
 #over 60 seconds -> gives a timeout. Not sure what to do, maybe check
 #back in a month or two to see if it's fixed?
 
+#2021-10-16: above error seems to be fixed, also
+
 BASE_URL="https://speedrun.com/api/v1"
 
 def get(url, options=None):
@@ -134,6 +136,7 @@ def get_related_leaderboard_records(subcategory_to_runs, subcategory_to_slower):
 
 
 def get_leaderboard_runs(url_params):
+    print(url_params)
     r = get("https://www.speedrun.com/ajax_leaderboard.php",url_params)
     soup = BeautifulSoup(r.text,'lxml')
 
@@ -153,7 +156,7 @@ def get_leaderboard_runs(url_params):
             onclick = x.select("a")[0]["onclick"]
             #example onclick: $('#loadtimes').val(0);
             var, val = re.findall("\$\('#(\w+)'\)\.val\((\d+)\);",onclick)[0]
-            if url_params[var] == val:
+            if url_params.get(var,None) == val:
                 time_col = i
                 break
             elif time_col is None:
@@ -174,6 +177,14 @@ def get_leaderboard_runs(url_params):
         #time info stored in <small> tags
         time_cell = cells[time_col]
         if i==0 and not time_cell.text: #must find time_cell info in the first row
+            #eg rocket league categories have only one run and that run doesn't have proper time info...
+            skips = [{'timeunits': '0', 'topn': '-1', 'game': 'rl', 'layout': 'new', 'verified': '1', 'loadtimes': '0', 'variable57717': '201201', 'variable57719': '201206', 'variable57718': '201205', 'obsolete': '1', 'category': '137726'},
+                     {'timeunits': '0', 'topn': '-1', 'game': 'rl', 'layout': 'new', 'verified': '1', 'loadtimes': '0', 'variable57717': '201201', 'variable57719': '201207', 'variable57718': '201205', 'obsolete': '1', 'category': '137726'},
+                     {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable22360': '175107', 'obsolete': '1', 'category': '68269'},
+                     {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable22360': '175108', 'obsolete': '1', 'category': '68269'},
+                     {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable31420': '105926', 'obsolete': '1', 'category': '89348'}]
+            if any([x.items() <= url_params.items() for x in skips]):
+                continue
             raise
         elif not time_cell.text:
             continue
@@ -186,6 +197,7 @@ def get_leaderboard_runs(url_params):
             continue #to time info
 
         if time == 0:
+            if url_params["category"] == "119905": continue #google solitaire actually has a 0 second run?
             print(result)
             raise
         yield {"time":time, "date":date, "runner": runner, "info": run}
@@ -239,12 +251,31 @@ def get_leaderboards(game_abbrev, writers):
 
     #populate all_filters
     all_filters = []
-    for x in soup.findAll("div",id=re.compile('^varnav')):
-        options = [{"variable": input_["name"], "value": input_["value"], "name": label.text.strip()} for input_, label in zip(x.findAll("input"), x.findAll("label"))]
+    for x in soup.select("div[data-cat]"):
+        names = []
+        for child in x.findAll(recursive=False): #add children names in order
+            #pull dropdown buttons - add if this node matches "a.dropdown-item[onclick]" or contains nodes that do
+            if child.name == "a" and "dropdown-item" in child.attrs['class'] and "onclick" in child.attrs:
+                names += [child.text.strip()]
+            names += [dropdown.text.strip() for dropdown in child.select("a.dropdown-item[onclick]")]
+            #pull buttons - add if this node matches "label[for] contains nodes that do
+            if child.name == "label" and "for" in child.attrs:
+                names += [child.text.strip()]
+            names += [button.text.strip() for button in child.select("label[for]")]
+
+        if len(x.select("input")) != len(names):
+            print("mismatch:")
+            print(x)
+            print(names)
+
+        options = [{"variable": input_["name"], "value": input_["value"], "name": name if name else ""} for input_, name in itertools.zip_longest(x.select("input"), names)]
         all_filters.append({"category": x["data-cat"], "options": options})
-    all_fields = soup.select('div.mb-4p5 > input')
+
+    all_fields = soup.select('form input[value][type="hidden"]') #hidden form fields specify values
 
     for c in categories:
+        print("category: ",c)
+        #if c["id"] != "137726": continue
         subcategory_to_runs = get_subcategory_to_runs(game_abbrev, c, all_filters, all_fields)
 
         record_generator = get_sm64_records if game_abbrev == "sm64" else get_records
@@ -298,17 +329,16 @@ def get_subcategory_to_runs(game_abbrev, category, all_filters, all_fields):
             raise
     subcategory_runs = {}
     for filter_tuple in itertools.product(*[x["options"] for x in relevant_filters]):
-        params = {
-            "topn": "-1", #new on 2021-09-25, website uses topn=1000
-            "obsolete": "1",
-            "category": category["id"]
-        }
+        params = {}
         for f in all_fields:
             if f.get("name","") and f.get("value",""):
                 if f["name"] == "category": continue #specifies the default category
                 params[f["name"]] = f["value"]
         for x in filter_tuple:
             params[x["variable"]] = x["value"]
+        params["topn"] = "-1" #new on 2021-09-25, website uses topn=1000
+        params["obsolete"] = "1"
+        params["category"] = category["id"]
         runs = list(get_leaderboard_runs(params))
         runs.sort(key = lambda x: x["date"])
         subcategory_runs["|".join([x["name"] for x in filter_tuple])] = runs
@@ -370,11 +400,14 @@ if __name__ == "__main__":
         "multi_pb": multi_pb_writer
     }
 
-    game = None #"cuphead" #None #"smb1" #"crossy"
+    game = None #"wsr" #None
+    start = False
     for g in get_most_popular_games():
+        if g["abbreviation"] == "stardew_valley": break
         if game is not None:
             if g["abbreviation"] == game:
+                start = True
+            if start:
                 get_leaderboards(g["abbreviation"], csv_writers)
-                raise
         else:
             get_leaderboards(g["abbreviation"], csv_writers)
