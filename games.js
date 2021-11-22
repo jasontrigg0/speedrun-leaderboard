@@ -274,6 +274,26 @@ const gameInfo = {
   brawl_stars: {
     name: "Brawl Stars",
     image: "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Brawl_Stars_logo.png/220px-Brawl_Stars_logo.png"
+  },
+  pou: {
+    name: "Pou",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Pou.png/100px-Pou.png"
+  },
+  cclicker: {
+    name: "Cookie Clicker",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/This_is_the_Steam_artwork_for_Cookie_Clicker._The_copyright_is_believed_to_belong_to_Playsaurus.jpg/220px-This_is_the_Steam_artwork_for_Cookie_Clicker._The_copyright_is_believed_to_belong_to_Playsaurus.jpg"
+  },
+  hl1: {
+    name: "Half-Life",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/Half-Life_Cover_Art.jpg/220px-Half-Life_Cover_Art.jpg"
+  },
+  jumpking: {
+    name: "Jump King",
+    image: ""
+  },
+  pt: {
+    name: "Piano Tiles",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Don%27t_Tap_the_White_Tile_promo_art.png/220px-Don%27t_Tap_the_White_Tile_promo_art.png"
   }
 }
 
