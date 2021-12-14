@@ -294,6 +294,10 @@ const gameInfo = {
   pt: {
     name: "Piano Tiles",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Don%27t_Tap_the_White_Tile_promo_art.png/220px-Don%27t_Tap_the_White_Tile_promo_art.png"
+  },
+  dhs: {
+    name: "ROBLOX: Down Hill Smash",
+    image: ""
   }
 }
 
