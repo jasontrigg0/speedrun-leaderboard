@@ -298,6 +298,10 @@ const gameInfo = {
   dhs: {
     name: "ROBLOX: Down Hill Smash",
     image: ""
+  },
+  crossy: {
+    name: "Crossy Road",
+    image: "https://upload.wikimedia.org/wikipedia/en/7/71/Crossy_Road_icon.jpeg"
   }
 }
 
