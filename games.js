@@ -302,6 +302,10 @@ const gameInfo = {
   crossy: {
     name: "Crossy Road",
     image: "https://upload.wikimedia.org/wikipedia/en/7/71/Crossy_Road_icon.jpeg"
+  },
+  fnafsb: {
+    name: "Five Nights at Freddy's: Security Breach",
+    image: "https://upload.wikimedia.org/wikipedia/en/0/05/Five_Nights_at_Freddy%27s-_Security_Breach_Steam_Storefront.jpeg"
   }
 }
 
