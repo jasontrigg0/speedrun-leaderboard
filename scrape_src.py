@@ -178,14 +178,15 @@ def get_leaderboard_runs(url_params):
         time_cell = cells[time_col]
         if i==0 and not time_cell.text: #must find time_cell info in the first row
             #eg rocket league categories have only one run and that run doesn't have proper time info...
-            skips = [{'timeunits': '0', 'topn': '-1', 'game': 'rl', 'layout': 'new', 'verified': '1', 'loadtimes': '0', 'variable57717': '201201', 'variable57719': '201206', 'variable57718': '201205', 'obsolete': '1', 'category': '137726'},
-                     {'timeunits': '0', 'topn': '-1', 'game': 'rl', 'layout': 'new', 'verified': '1', 'loadtimes': '0', 'variable57717': '201201', 'variable57719': '201207', 'variable57718': '201205', 'obsolete': '1', 'category': '137726'},
-                     {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable22360': '175107', 'obsolete': '1', 'category': '68269'},
-                     {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable22360': '175108', 'obsolete': '1', 'category': '68269'},
-                     {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable31420': '105926', 'obsolete': '1', 'category': '89348'}]
-            if any([x.items() <= url_params.items() for x in skips]):
+            skips = [
+                {'timeunits': '0', 'topn': '-1', 'game': 'rocketleague', 'layout': 'new', 'verified': '1', 'loadtimes': '0', 'variable57717': '201201', 'variable57719': '201207', 'variable57718': '201205', 'obsolete': '1', 'category': '137726'},
+                {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable22360': '175107', 'obsolete': '1', 'category': '68269'},
+                {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable22360': '175108', 'obsolete': '1', 'category': '68269'},
+                {'timeunits': '0', 'topn': '-1', 'game': 'robot64', 'layout': 'new', 'verified': '1', 'loadtimes': '2', 'variable31420': '105926', 'obsolete': '1', 'category': '89348'}
+            ]
+            if any([[i for i in x.items() if i[0] != 'vary'] <= [i for i in url_params.items() if i[0] != 'vary'] for x in skips]):
                 continue
-            raise
+            raise Exception("Error, probably fix by adding url_params to the skips variable above")
         elif not time_cell.text:
             continue
         time_conversions = {"h": 3600, "m": 60, "s": 1, "ms": 0.001}
@@ -400,7 +401,8 @@ if __name__ == "__main__":
         "multi_pb": multi_pb_writer
     }
 
-    game = None #"wsr" #None
+    #game = "rocketleague"
+    game = None
     start = False
     for g in get_most_popular_games():
         if g["abbreviation"] == "stardew_valley": break
