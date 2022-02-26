@@ -306,6 +306,18 @@ const gameInfo = {
   fnafsb: {
     name: "Five Nights at Freddy's: Security Breach",
     image: "https://upload.wikimedia.org/wikipedia/en/0/05/Five_Nights_at_Freddy%27s-_Security_Breach_Steam_Storefront.jpeg"
+  },
+  smg1: {
+    name: "Super Mario Galaxy",
+    image: "https://mario.wiki.gallery/images/thumb/d/d4/Super_Mario_Galaxy_NA_Box_Art.jpg/250px-Super_Mario_Galaxy_NA_Box_Art.jpg"
+  },
+  gtav: {
+    name: "Grand Theft Auto V",
+    image: "https://en.wikipedia.org/wiki/File:Grand_Theft_Auto_V.png"
+  },
+  contra: {
+    name: "Contra",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Contra_cover.jpg/220px-Contra_cover.jpg"
   }
 }
 
