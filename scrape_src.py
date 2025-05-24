@@ -6,6 +6,8 @@ import csv
 import sys
 import re
 import itertools
+import datetime
+import base64
 
 #scrape speedrun.com to find the best records as measured by
 #most runs submitted in that category before the record was broken
@@ -210,11 +212,11 @@ def get_leaderboard_records(all_runs):
 
     for run in all_runs:
         if not record:
-            record = {"time": run["time"], "date": run["date"], "runner": run["runner"]}
+            record = {"time": run["time"], "date": run["date"], "runner": run["playerIds"][0]}
             cnt = 0
         elif run["time"] <= record["time"]:
             yield {"time": record["time"], "date": record["date"], "runner": record["runner"], "cnt": cnt, "cur": 0}
-            record = {"time": run["time"], "date": run["date"], "runner": run["runner"]}
+            record = {"time": run["time"], "date": run["date"], "runner": run["playerIds"][0]}
             cnt = 0
         cnt += 1
     if record:
@@ -245,13 +247,81 @@ def get_multi_pbs(all_runs):
                 yield {**runner_up_run, **{"is_record": 0, "record_runner": record_holder_runs[-1]["runner"], "record_runner_cnt": len(record_holder_runs)}}
 
 
-def get_leaderboards(game_abbrev, writers):
+def get_leaderboards(game_info, writers):
+    game_id = game_info["id"]
+    time = int(datetime.datetime.utcnow().timestamp())
+
+    def to_querystring(info):
+        return base64.b64encode(bytes(json.dumps(info).replace(" ",""),"ascii")).decode("ascii").replace("=","")
+
+
+    #info = {"params":{"gameId":"o1y9wo6q","categoryId":"n2y55mko","values":[],"timer":0,"regionIds":[],"platformIds":[],"emulator":1,"video":0,"obsolete":1},"page":1,"vary":time}
+
+    info = {"gameId": "o1y9wo6q"}
+
+    r = get("https://www.speedrun.com/api/v2/GetGameData", {"_r": to_querystring(info)})
+
+    categories = json.loads(r.text)["categories"]
+    variables = json.loads(r.text)["variables"]
+    values = json.loads(r.text)["values"]
+
+    gamewideVariables = []
+    categoryVariables = {}
+    variableValues = {}
+
+    for x in variables:
+        if x["categoryScope"] == -1:
+            gamewideVariables.append(x)
+        else:
+            categoryVariables.setdefault(x["categoryId"],[])
+            categoryVariables[x["categoryId"]].append(x)
+
+    for x in values:
+        variableValues.setdefault(x["variableId"],[])
+        variableValues[x["variableId"]].append(x)
+
+    print(categories)
+    print(gamewideVariables)
+    print(categoryVariables)
+    print(variableValues)
+
+    for cat in categories:
+        values = []
+        for var in gamewideVariables:
+            if var["isSubcategory"]:
+                pass
+
+    info = {"params":{"gameId":"o1y9wo6q","categoryId":"n2y55mko","values":[{"variableId":"e8m7em86","valueIds":["9qj7z0oq"]}],"timer":0,"regionIds":[],"platformIds":[],"emulator":1,"video":0,"obsolete":1},"page":1,"vary":time}
+
+    r = get("https://www.speedrun.com/api/v2/GetGameLeaderboard", {"_r": to_querystring(info)})
+    page_cnt = json.loads(r.text)["leaderboard"]["pagination"]["pages"]
+    print(page_cnt)
+
+    runs = []
+    for i in range(2): #page_cnt):
+        info["page"] = i+1
+        print("pulling page " + str(info["page"]))
+        r = get("https://www.speedrun.com/api/v2/GetGameLeaderboard", {"_r": to_querystring(info)})
+        if i+1 == 10:
+            print(to_querystring(info))
+        runs = runs + json.loads(r.text)["leaderboard"]["runs"]
+
+    runs.sort(key=lambda x: x["date"])
+    print(list(get_leaderboard_records(runs)))
+    raise
+
+
     r = get(f"https://www.speedrun.com/{game_abbrev}")
     soup = BeautifulSoup(r.text,'lxml')
     categories = [{"name":x.text.strip(),"id":x["id"].replace("category","")} for x in soup.select("a.category")]
 
+    print(game_abbrev)
+    print(categories)
+    raise
+
     #populate all_filters
     all_filters = []
+    print(soup)
     for x in soup.select("div[data-cat]"):
         names = []
         for child in x.findAll(recursive=False): #add children names in order
@@ -405,11 +475,11 @@ if __name__ == "__main__":
     game = None
     start = False
     for g in get_most_popular_games():
-        if g["abbreviation"] == "stardew_valley": break
+        #if g["abbreviation"] == "stardew_valley": break
         if game is not None:
             if g["abbreviation"] == game:
                 start = True
             if start:
-                get_leaderboards(g["abbreviation"], csv_writers)
+                get_leaderboards(g, csv_writers)
         else:
-            get_leaderboards(g["abbreviation"], csv_writers)
+            get_leaderboards(g, csv_writers)
